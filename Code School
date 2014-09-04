@@ -1,0 +1,44 @@
+==================работа со строками========
+
+
+=========слияние строк и поиск с заменой======
+NSString *firstName = @"Syaopin";
+NSString *lastName=@"Den";
+
+NSString *fullName = [[firstName stringByAppendingString:@" "]
+                        stringByAppendingString:lastName];
+
+NSString *replaced = [fullName stringByReplacingOccurrencesOfString:firstName
+                                                         withString:lastName];
+
+NSLog(@"%@", replaced);
+
+
+или
+
+
+NSString *firstName = @"Syaopin";
+NSString *lastName=@"Den";
+
+NSString *fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+
+NSLog(@"%@", fullName);
+
+
+=============копия строки=====
+NSString *firstName = @"Syaopin";
+
+NSString *copy = [NSString stringWithString:firstName];
+
+NSLog(@"%@ is a copy of %@", copy, firstName);
+
+
+или
+
+NSString *firstName = @"Syaopin";
+
+NSString *copy = [[NSString alloc] initWithString:firstName];
+
+NSLog(@"%@ is a copy of %@", copy, firstName);
+
+======================
