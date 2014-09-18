@@ -125,4 +125,10 @@ for (NSString *hat in newHats){
     NSLog(@"Mr. Higgie hates it");
   }
 }
-==============================
+==========================Блоки================
+
+void (^myFirstBlock)(void)=^{
+NSLog(@"It's my first block, bitches!");
+};
+myFirstBlock();
+===================================================
