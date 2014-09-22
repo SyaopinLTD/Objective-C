@@ -139,4 +139,15 @@ void (^myFirstBlock)(NSString *) = ^(NSString *a){
 
 myFirstBlock(@"Hello");
 myFirstBlock(@"World");
+
+=================перебор массива===========
+NSArray *newHats = @[@"Cowboy", @"Conductor", @"Baseball", 
+  @"Beanie", @"Beret", @"Fez"];
+
+[newHats enumerateObjectsUsingBlock:
+ ^(NSString *hat, NSUInteger index, BOOL *stop)
+ {
+ NSLog(@"Trying on hat %@", hat);
+ }
+];
 ===================================================
