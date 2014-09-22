@@ -131,4 +131,12 @@ void (^myFirstBlock)(void)=^{
 NSLog(@"It's my first block, bitches!");
 };
 myFirstBlock();
+
+================с параметрами====================
+void (^myFirstBlock)(NSString *) = ^(NSString *a){
+  NSLog(@"Hello from inside the block: %@", a);
+};
+
+myFirstBlock(@"Hello");
+myFirstBlock(@"World");
 ===================================================
