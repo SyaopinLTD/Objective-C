@@ -150,4 +150,35 @@ NSArray *newHats = @[@"Cowboy", @"Conductor", @"Baseball",
  NSLog(@"Trying on hat %@", hat);
  }
 ];
-===================================================
+================================================================
+=============== пример работы с классами ====================================
+
+=================1=======================
+#import "Dictator.h"
+
+Dictator *talkingiPhone = [[Dictator alloc] init];
+talkingiPhone.phoneName = @"Mr. Higgie";
+
+NSLog([talkingiPhone speak:@"Hi-Hi"]);
+NSLog([talkingiPhone speak:@"Bye-Bye"]);
+NSLog([talkingiPhone speak:@"See ya"]);
+===============Dictator.h=========
+@interface Dictator : NSObject
+
+@property NSString *phoneName;
+@property NSString *modelNumber;
+
+- (NSString *) speak:(NSString *)greeting;
+@end
+===============Dictator.m================
+#import "Dictator.h"
+
+@implementation Dictator
+- (NSString *)speak:(NSString *)greeting;
+{
+    NSString *message = [NSString stringWithFormat:@"%@ says %@", self.phoneName, greeting];
+    return message;
+}
+@end
+==========================================
+=======================================
