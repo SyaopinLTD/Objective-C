@@ -1,0 +1,42 @@
+=========Dictator.h=============
+@interface Dictator : NSObject
+
+@property NSString *phoneName;
+@property NSString *modelNumber;
+@property NSNumber *batteryLife;
+
+- (void) decreaseBatteryLife:(NSNumber *)num;
+- (NSString *) speak:(NSString *)greeting;
+- (void) reportBatteryLife;
+
+@end
+===============Dictator.m===================
+#import "Dictator.h"
+
+@implementation Dictator
+
+- (void) decreaseBatteryLife:(NSNumber *)num;
+{
+  self.batteryLife = @([self.batteryLife intValue] - [num intValue]);
+}
+
+- (void) reportBatteryLife;
+{
+    NSLog(@"Battery life is %@", self.batteryLife);
+}
+
+- (NSString *)speak:(NSString *)greeting;
+{
+    NSString *message = [NSString stringWithFormat:@"%@ says %@", self.phoneName, greeting];
+    return message;
+}
+@end
+============Example================
+#import "Dictator.h"
+
+Dictator *talkingiPhone = [[Dictator alloc] init];
+talkingiPhone.phoneName = @"Mr. Higgie";
+talkingiPhone.batteryLife = @100;
+
+[talkingiPhone decreaseBatteryLife:@5];
+[talkingiPhone reportBatteryLife];
