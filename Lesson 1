@@ -60,16 +60,21 @@
 }
 -(void) putAllCandy{
     
-    [robot putAllCandyForOddColumn];
+    [robot putAllCandyForColumn];
     [robot moveToNextColumn];
-    [robot putAllCandyForEvenColumn];
+    [robot putAllCandyForColumn];
     [robot moveToNextColumn];
-    [robot putAllCandyForOddColumn];
+    [robot putAllCandyForColumn];
     [robot moveToNextColumn];
-    [robot putAllCandyForEvenColumn];
+    [robot putAllCandyForColumn];
 }
--(void )putAllCandyForOddColumn{
-    [robot turnLeft];
+-(void )putAllCandyForColumn{
+    if ([robot rightIsBlocked]){
+        [robot turnLeft];
+    }
+    else {
+        [robot turnRight];
+    }
     while([robot frontIsClear]){
         if ([robot noCandyPresent]){
             [robot put];
@@ -81,19 +86,7 @@
     }
     
 }
--(void)putAllCandyForEvenColumn{
-    [robot turnRight];
-    while([robot frontIsClear]){
-        if ([robot noCandyPresent]){
-            [robot put];
-        }
-        [robot move];
-    }
-    if ([robot noCandyPresent]){
-        [robot put];
-    }
 
-}
 -(void)moveToNextColumn{
     if ([robot facingUp]){
         [robot turnRight];
