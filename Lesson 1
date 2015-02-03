@@ -1,0 +1,143 @@
+//
+//  RobotControlCenter.m
+//  Karel
+//
+//  Created by Ivan Vasilevich on 4/11/14.
+//  Copyright (c) 2014 Ivan Vasilevich. All rights reserved.
+//
+
+
+#import "RobotControlCenter.h"
+
+@interface RobotControlCenter ()
+
+@property (nonatomic, weak) RobotControlCenter *robot;
+
+@end
+
+@implementation RobotControlCenter
+
+@synthesize robot = robot;
+
+#define LEVEL_NAME @"L22H"
+#define WORLD_LENGHT 14
+
+- (void)viewDidLoad{
+    
+    robot = self;
+    self.levelName = LEVEL_NAME;
+    [super viewDidLoad];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [self run];
+    
+}
+
+- (IBAction)start {
+    [self performTasks];
+}
+
+
+
+//---------------------------------------------------//
+/*
+ slf; ds
+ fdslf'dls
+ flds;'fkds
+ ;fkds;fkds
+ lfkldsk fafkdl
+ ad
+ 
+ */
+
+- (void)run{
+
+    [robot putAllCandy];
+}
+-(void) putAllCandy{
+    
+    [robot putAllCandyForOddColumn];
+    [robot moveToNextColumn];
+    [robot putAllCandyForEvenColumn];
+    [robot moveToNextColumn];
+    [robot putAllCandyForOddColumn];
+    [robot moveToNextColumn];
+    [robot putAllCandyForEvenColumn];
+}
+-(void )putAllCandyForOddColumn{
+    [robot turnLeft];
+    while([robot frontIsClear]){
+        if ([robot noCandyPresent]){
+            [robot put];
+        }
+        [robot move];
+    }
+    if ([robot noCandyPresent]){
+        [robot put];
+    }
+    
+}
+-(void)putAllCandyForEvenColumn{
+    [robot turnRight];
+    while([robot frontIsClear]){
+        if ([robot noCandyPresent]){
+            [robot put];
+        }
+        [robot move];
+    }
+    if ([robot noCandyPresent]){
+        [robot put];
+    }
+
+}
+-(void)moveToNextColumn{
+    if ([robot facingUp]){
+        [robot turnRight];
+        [robot doubleMove];
+        [robot doubleMove];
+    }
+    else{
+        [robot turnLeft];
+        [robot doubleMove];
+        [robot doubleMove];
+    }
+}
+//- (void) shedevr0{
+//    while([robot noCandyPresent]){
+//        if ([robot frontIsBlocked]){
+//            break;
+//        }
+//        [robot move];
+//    }
+//    
+//    [robot pick];
+//    [robot turnRight];
+//    if ([robot frontIsClear]){
+//        [robot move];
+//    }
+//    
+//    [robot turnLeft];
+//    [robot doubleMove];
+//    [robot put];
+//    [robot doubleMove];
+//
+//}
+- (void) turnLeft{
+    for (int i = 0; i < 3; i ++) {
+        [robot turnRight];
+    }
+}
+- (void) doubleMove{
+    [robot move];
+    [robot move];
+}
+
+//---------------------------------------------------//
+
+
+
+@end
