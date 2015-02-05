@@ -1,0 +1,42 @@
+run {
+
+[robot putCandyNearWalls];
+[robot findCenterOfRow];
+[robot turnRight];
+[robot putCandyNearWalls];
+[robot findCenterOfRow];
+
+}
+
+-(void) findCenterOfRow{
+while([robot noCandyPresent])
+ {
+[robot move];
+if ([robot CandyPresent])
+  {
+[robot turnBack];
+[robot move];
+[robot put];
+[robot move];
+  }
+ }
+}
+
+-(void) putCandyNearWalls{
+while([robot frontIsClear]){
+[robot move];
+}
+[robot put];
+[robot turnBack];
+while([robot frontIsClear]){
+[robot move];
+}
+[robot put];
+[robot turnBack];
+[robot move];
+}
+
+-(void)turnBack{
+[robot turnRight];
+[robot turnRight];
+}
