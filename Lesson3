@@ -1,0 +1,85 @@
+//
+//  ViewController.m
+//  G18_Lesson3
+//
+//  Created by MacBook - iOS[student] on 2/10/15.
+//  Copyright (c) 2015 MacBook - iOS[student]. All rights reserved.
+//
+
+#import "ViewController.h"
+///Users/ios/Documents/Developer/untitled folder/G18_Lesson3/G18_Lesson3/ViewController.m
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+//    
+//    int money = arc4random()%200;
+//    if(money < 100){
+//        NSLog(@"cannot spent money");
+//    }
+//    else{
+//        NSLog(@"Let's go to eat");
+//    }
+    
+    NSString *name = @"DenisZiv";
+    NSRange range = NSMakeRange(3,2);
+    NSLog(@"%@", [name substringWithRange:range]);
+    
+    int age = 32;
+    int cars = 0;
+    int iPhones = 1;
+    NSString *resume = [NSString stringWithFormat:@"my name is %@. I'm %i years old. I have %i cars, %i iPhones.", name, age, cars, iPhones];
+    NSLog(@"%@ %i symbols length", resume, resume.length);
+    if ([name hasSuffix:@"is"]){
+        NSLog(@"your name ends with is");
+    }
+    
+    NSString *stringFromFile = [NSString stringWithContentsOfFile:@"/Users/ios/Desktop/testfile"
+                                                         encoding:NSUTF8StringEncoding
+                                                            error:NULL];
+    NSLog(@"%@", stringFromFile);
+    [resume writeToFile:@"/Users/ios/Desktop/resume"
+             atomically:NO
+               encoding:NSUTF8StringEncoding
+                  error:NULL];
+    
+    
+    NSDate *now = [[NSDate alloc] init];  //[NSDate new]  the same
+    NSLog(@"time is %@", now);
+    NSDate *weekBefore = [now dateByAddingTimeInterval:-60*60*24*7];
+    NSLog(@"time %@ week before", weekBefore);
+    
+    NSSet *set = [NSSet setWithObjects:@"one", @"two", @"three", @"four", @"five", nil];
+    NSLog(@"%@", [set anyObject]);
+    
+    
+    NSArray *array = [NSArray arrayWithObjects:@"one", @2, @"three", @4, @"five", nil];
+    NSLog(@"%@", array);
+    [array indexOfObject:name];
+    [array objectAtIndex:2];
+    NSLog(@"%@", array[1]);
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"one", @"1", @"two", @"2", @"three", @"3", @"four", @"4", @"five", @"5", nil];
+    NSDictionary *dict = @{@"one":@"1",
+                           @"two":@"2",
+                           @"three":@"3",
+                           @"four":@"4",
+                           @"five":@"5"};
+    NSLog(@"%@", dict);
+    for (id obj in array){
+        if ([obj isKindOfClass:[NSString class]])
+             NSLog(@"Hello %@", obj);
+    }
+    int mark1 = 3, mark2 = 100500, mark3 = 4;
+    //NSNumber *mark1Number = [[NSNumber alloc] initWithInt:mark1];
+    NSNumber *mark1Number = @(mark1);
+    NSArray *marks = @[@(mark1)];
+    [mark1Number intValue];
+}
+
+
+@end
