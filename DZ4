@@ -1,0 +1,93 @@
+//
+//  ViewController.m
+//  G18_DZ4
+//
+//  Created by NataDen on 15.02.15.
+//  Copyright (c) 2015 NataDen. All rights reserved.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"========================Task1=========================");
+    [self putCommasBetweenNumbers:@"1234567890"];
+    
+    NSLog(@"========================Task2=========================");
+    [self workWithArray];
+    
+}
+-(void) putCommasBetweenNumbers: (NSString *) str{
+
+    NSMutableString *result = [[NSMutableString alloc] init];
+    int count = 0;
+    for (int i = str.length - 1; i >= 0; i --){
+        [result insertString:[NSString stringWithFormat:@"%c", [str characterAtIndex:i]] atIndex:0];
+        count ++;
+        if ((count == 3)&&(i > 0)){
+        [result insertString:[NSString stringWithFormat:@","] atIndex:0];
+            count = 0;
+        }
+    }
+    
+    NSLog(@"%@", result);
+}
+
+-(void) workWithArray{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+
+    for (int i = 0; i < 100; i ++){
+        [array addObject:@(arc4random()%990 + 10)];
+    }
+    [self removeDuplicateFromArray:array];
+    [self sortArray:array];
+    
+    NSLog(@"Sorted array: %@", array);
+    
+}
+-(void) removeDuplicateFromArray: (NSMutableArray *) array{
+    int count = 0;
+    for (int i = 0; i < [array count]; i ++)
+        {
+        for (int j = i + 1; j < [array count]; j++)
+         {
+          if ([array[i] compare:array[j]] == NSOrderedSame)
+          {
+            [array removeObjectAtIndex:j];
+             count ++;
+              j --;
+          }
+        
+         }
+        }
+  
+    NSLog(@"Removed %i duplicates", count);
+}
+-(void) sortArray: (NSMutableArray *) array{
+    NSNumber *tmp;
+    BOOL check = NO;
+    for (int i = 0; i < [array count]; i ++)            //bubble sorting
+        {
+            check = NO;
+            
+            for (int j = 0; j < [array count] - 1; j++)
+            {
+               if ([array[j] compare:array[j+1]] == NSOrderedDescending)
+               {
+                   tmp = array[j];
+                   [array replaceObjectAtIndex:j withObject:array[j+1]];
+                  [array replaceObjectAtIndex:j+1 withObject:tmp];
+                   check = YES;
+               }
+                
+            }
+            if (check == NO) break;
+        }
+}
+@end
